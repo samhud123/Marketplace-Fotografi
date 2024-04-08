@@ -9,7 +9,7 @@
         </li>
 
         <li class="sidebar-item <?= $title == "Admin | Dashboard" ? 'active' : ''; ?>">
-            <a class="sidebar-link" href="/mitra">
+            <a class="sidebar-link" href="/admin">
                 <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
         </li>
@@ -20,8 +20,8 @@
                 <i class="align-middle" data-feather="users"></i> <span class="align-middle">Manage Mitra</span>
             </a>
         </li>
-        <li class="sidebar-item <?= $title == "Mitra | Orders" ? 'active' : ''; ?>">
-            <a class="sidebar-link" href="/mitra/orders">
+        <li class="sidebar-item <?= $title == "Admin | Customers" ? 'active' : ''; ?>">
+            <a class="sidebar-link" href="/admin/customers">
                 <i class="align-middle" data-feather="users"></i> <span class="align-middle">Manage Customer</span>
             </a>
         </li>

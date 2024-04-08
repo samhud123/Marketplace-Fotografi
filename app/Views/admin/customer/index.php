@@ -2,7 +2,7 @@
 
 <?= $this->section('content') ?>
 <div class="container-fluid p-0">
-    <h1 class="h3 mb-3">Manage Mitra</h1>
+    <h1 class="h3 mb-3">Manage Customers</h1>
     <?php if (session()->get('message')) : ?>
         <div class="alert alert-danger mb-3 text-primary" role="alert">
             <?= session()->get('message'); ?>
@@ -26,27 +26,19 @@
                     </thead>
                     <tbody>
                         <?php $i = 1; ?>
-                        <?php foreach ($mitras as $mitra) : ?>
+                        <?php foreach ($customers as $customer) : ?>
                             <tr>
                                 <td><?= $i++; ?></td>
-                                <td><?= $mitra['nama']; ?> <br> <span class="text-secondary">@<?= $mitra['username']; ?></span></td>
-                                <td><?= $mitra['email']; ?></td>
-                                <?php if ($mitra['active'] === '1') : ?>
+                                <td><?= $customer['nama']; ?> <br> <span class="text-secondary">@<?= $customer['username']; ?></span></td>
+                                <td><?= $customer['email']; ?></td>
+                                <?php if ($customer['active'] === '1') : ?>
                                     <td><span class="text-success fw-bold">Active</span></td>
                                 <?php else : ?>
                                     <td><span class="text-danger fw-bold">In-Active</span></td>
                                 <?php endif; ?>
                                 <td>
                                     <a href="/mitra/service/edit/" class="btn btn-sm btn-primary"><i class="align-middle" data-feather="edit"></i> <span class="align-middle">Detil</span></a>
-                                    <?php if ($mitra['active'] === '1') : ?>
-                                        <form action="/admin/mitra/<?= $mitra['id']; ?>" method="post" class="d-inline">
-                                            <?= csrf_field(); ?>
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i class="align-middle" data-feather="trash-2"></i> <span class="align-middle">Disabled</span></button>
-                                        </form>
-                                    <?php else : ?>
-                                        <button type="submit" class="btn btn-sm btn-success" onclick="return confirm('Are you sure?')"><i class="align-middle" data-feather="trash-2"></i> <span class="align-middle">Enabled</span></button>
-                                    <?php endif; ?>
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i class="align-middle" data-feather="trash-2"></i> <span class="align-middle">Disabled</span></button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -56,4 +48,4 @@
         </div>
     </div>
 </div>
-<?= $this->endSection() ?>
+<?= $this->endSection(); ?>

@@ -9,6 +9,9 @@ $routes->get('/', 'Home::index');
 
 $routes->get('/admin', 'Admin::index', ['filter' => 'role:Admin']);
 $routes->get('/admin/mitra', 'AdminMitra::index', ['filter' => 'role:Admin']);
+$routes->delete('/admin/mitra/(:num)', 'AdminMitra::delete/$1', ['filter' => 'role:Admin']);
+
+$routes->get('/admin/customers', 'AdminCustomers::index', ['filter' => 'role:Admin']);
 
 $routes->get('/mitra', 'Mitra::index', ['filter' => 'role:Mitra']);
 $routes->get('/mitra/profile', 'Mitra::profile', ['filter' => 'role:Mitra']);
