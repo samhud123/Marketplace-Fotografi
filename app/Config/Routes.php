@@ -8,6 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 
 $routes->get('/admin', 'Admin::index', ['filter' => 'role:Admin']);
+$routes->get('/admin/profile', 'Admin::profile', ['filter' => 'role:Admin']);
 $routes->get('/admin/mitra', 'AdminMitra::index', ['filter' => 'role:Admin']);
 $routes->delete('/admin/mitra/(:num)', 'AdminMitra::delete/$1', ['filter' => 'role:Admin']);
 
@@ -34,3 +35,6 @@ $routes->post('/mitra/gallery/add', 'MitraGallery::save', ['filter' => 'role:Mit
 $routes->get('/mitra/gallery/edit/(:num)', 'MitraGallery::edit/$1', ['filter' => 'role:Mitra']);
 $routes->post('/mitra/gallery/edit/(:num)', 'MitraGallery::update/$1', ['filter' => 'role:Mitra']);
 $routes->delete('/mitra/gallery/delete/(:num)', 'MitraGallery::delete/$1', ['filter' => 'role:Mitra']);
+
+// routes customers
+$routes->get('/customer', 'Customer::index', ['filter' => 'role:Customer']);

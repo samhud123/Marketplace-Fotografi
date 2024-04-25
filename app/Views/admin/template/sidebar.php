@@ -40,8 +40,8 @@
             ACCOUNT
         </li>
 
-        <li class="sidebar-item <?= $title == "Mitra | Profile" ? 'active' : ''; ?>">
-            <a class="sidebar-link" href="/mitra/profile">
+        <li class="sidebar-item <?= $title == "Admin | Profile" ? 'active' : ''; ?>">
+            <a class="sidebar-link" href="/admin/profile">
                 <i class="align-middle" data-feather="user"></i> <span class="align-middle">My Profile</span>
             </a>
         </li>
