@@ -8,75 +8,47 @@
             <div class="card flex-fill">
                 <div class="card-header">
 
-                    <h5 class="card-title mb-0">Service List</h5>
+                    <h5 class="card-title mb-0">Order List</h5>
                 </div>
                 <table class="table table-hover my-0">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th class="d-none d-xl-table-cell">Start Date</th>
-                            <th class="d-none d-xl-table-cell">End Date</th>
+                            <th>No</th>
+                            <th>Buyer</th>
+                            <th>Service</th>
+                            <th>Date</th>
                             <th>Status</th>
-                            <th class="d-none d-md-table-cell">Assignee</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Project Apollo</td>
-                            <td class="d-none d-xl-table-cell">01/01/2021</td>
-                            <td class="d-none d-xl-table-cell">31/06/2021</td>
-                            <td><span class="badge bg-success">Done</span></td>
-                            <td class="d-none d-md-table-cell">Vanessa Tucker</td>
-                        </tr>
-                        <tr>
-                            <td>Project Fireball</td>
-                            <td class="d-none d-xl-table-cell">01/01/2021</td>
-                            <td class="d-none d-xl-table-cell">31/06/2021</td>
-                            <td><span class="badge bg-danger">Cancelled</span></td>
-                            <td class="d-none d-md-table-cell">William Harris</td>
-                        </tr>
-                        <tr>
-                            <td>Project Hades</td>
-                            <td class="d-none d-xl-table-cell">01/01/2021</td>
-                            <td class="d-none d-xl-table-cell">31/06/2021</td>
-                            <td><span class="badge bg-success">Done</span></td>
-                            <td class="d-none d-md-table-cell">Sharon Lessman</td>
-                        </tr>
-                        <tr>
-                            <td>Project Nitro</td>
-                            <td class="d-none d-xl-table-cell">01/01/2021</td>
-                            <td class="d-none d-xl-table-cell">31/06/2021</td>
-                            <td><span class="badge bg-warning">In progress</span></td>
-                            <td class="d-none d-md-table-cell">Vanessa Tucker</td>
-                        </tr>
-                        <tr>
-                            <td>Project Phoenix</td>
-                            <td class="d-none d-xl-table-cell">01/01/2021</td>
-                            <td class="d-none d-xl-table-cell">31/06/2021</td>
-                            <td><span class="badge bg-success">Done</span></td>
-                            <td class="d-none d-md-table-cell">William Harris</td>
-                        </tr>
-                        <tr>
-                            <td>Project X</td>
-                            <td class="d-none d-xl-table-cell">01/01/2021</td>
-                            <td class="d-none d-xl-table-cell">31/06/2021</td>
-                            <td><span class="badge bg-success">Done</span></td>
-                            <td class="d-none d-md-table-cell">Sharon Lessman</td>
-                        </tr>
-                        <tr>
-                            <td>Project Romeo</td>
-                            <td class="d-none d-xl-table-cell">01/01/2021</td>
-                            <td class="d-none d-xl-table-cell">31/06/2021</td>
-                            <td><span class="badge bg-success">Done</span></td>
-                            <td class="d-none d-md-table-cell">Christina Mason</td>
-                        </tr>
-                        <tr>
-                            <td>Project Wombat</td>
-                            <td class="d-none d-xl-table-cell">01/01/2021</td>
-                            <td class="d-none d-xl-table-cell">31/06/2021</td>
-                            <td><span class="badge bg-warning">In progress</span></td>
-                            <td class="d-none d-md-table-cell">William Harris</td>
-                        </tr>
+                        <?php $i = 1; ?>
+                        <?php foreach ($orders as $order) : ?>
+                            <tr>
+                                <td><?= $i++; ?></td>
+                                <td>
+                                    <h6 class="fw-semibold mb-1"><?= $order['username']; ?></h6>
+                                    <span class="fw-normal"><?= $order['email']; ?></span>
+                                </td>
+                                <td><?= $order['name_service']; ?></td>
+                                <td><?= $order['date']; ?></td>
+                                <?php if ($order['status_order'] === 'process') : ?>
+                                    <?php $bg = 'bg-warning'; ?>
+                                <?php elseif ($order['status_order'] === 'approved') : ?>
+                                    <?php $bg = 'bg-primary'; ?>
+                                <?php elseif ($order['status_order'] === 'finished') : ?>
+                                    <?php $bg = 'bg-success'; ?>
+                                <?php else : ?>
+                                    <?php $bg = 'bg-danger'; ?>
+                                <?php endif; ?>
+                                <td><span class="badge <?= $bg; ?>"><?= $order['status_order']; ?></span></td>
+                                <td>
+                                    <a href="/mitra/orders/detail/<?= $order['order_id']; ?>" class="btn btn-info">Detail</a>
+                                    <a href="/mitra/orders/confirm/<?= $order['order_id']; ?>" class="btn btn-primary">Confirm</a>
+                                    <a href="/mitra/orders/reject/<?= $order['order_id']; ?>" class="btn btn-danger">Reject</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

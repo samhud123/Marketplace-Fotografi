@@ -6,6 +6,11 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
+$routes->get('/order', 'Home::order', ['filter' => 'role:Customer']);
+$routes->post('/order', 'Home::attemptOrder', ['filter' => 'role:Customer']);
+
+// routes searching
+$routes->get('/photo', 'Search::index');
 
 // routes admin
 $routes->get('/admin', 'Admin::index', ['filter' => 'role:Admin']);
@@ -28,6 +33,9 @@ $routes->delete('/mitra/service/delete/(:num)', 'MitraService::delete/$1', ['fil
 
 // routes mitra orders
 $routes->get('/mitra/orders', 'MitraOrders::index', ['filter' => 'role:Mitra']);
+$routes->get('/mitra/orders/detail/(:num)', 'MitraOrders::detail/$1', ['filter' => 'role:Mitra']);
+$routes->get('/mitra/orders/confirm/(:num)', 'MitraOrders::confirm/$1', ['filter' => 'role:Mitra']);
+$routes->get('/mitra/orders/reject/(:num)', 'MitraOrders::reject/$1', ['filter' => 'role:Mitra']);
 
 // routes mitra gallery 
 $routes->get('/mitra/gallery', 'MitraGallery::index', ['filter' => 'role:Mitra']);
@@ -37,8 +45,7 @@ $routes->get('/mitra/gallery/edit/(:num)', 'MitraGallery::edit/$1', ['filter' =>
 $routes->post('/mitra/gallery/edit/(:num)', 'MitraGallery::update/$1', ['filter' => 'role:Mitra']);
 $routes->delete('/mitra/gallery/delete/(:num)', 'MitraGallery::delete/$1', ['filter' => 'role:Mitra']);
 
-// routes searching
-$routes->get('/photo', 'Search::index');
-
 // routes customers
 $routes->get('/customer', 'Customer::index', ['filter' => 'role:Customer']);
+$routes->get('/customer/order', 'Customer::order', ['filter' => 'role:Customer']);
+$routes->get('/customer/order/finish/(:num)', 'Customer::finish/$1', ['filter' => 'role:Customer']);

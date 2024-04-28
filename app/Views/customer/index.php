@@ -30,7 +30,7 @@
         <div class="col-12">
             <div class="form-group">
                 <label for="account-pass">Alamat</label>
-                <textarea name="alamat" class="form-control" cols="20" rows="4" disabled></textarea>
+                <textarea name="alamat" class="form-control" cols="20" rows="4" disabled><?= user()->alamat; ?></textarea>
             </div>
         </div>
         <div class="col-12">

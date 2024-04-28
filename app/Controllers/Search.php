@@ -13,7 +13,6 @@ class Search extends BaseController
         if ($search) {
             $result = $serviceModel->search($search);
         } else {
-            // Jika tidak ada keyword, tampilkan semua produk
             $result = $serviceModel->getAllService();
         }
         $data = [
