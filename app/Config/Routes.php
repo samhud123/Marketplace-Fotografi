@@ -7,13 +7,14 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
+// routes admin
 $routes->get('/admin', 'Admin::index', ['filter' => 'role:Admin']);
 $routes->get('/admin/profile', 'Admin::profile', ['filter' => 'role:Admin']);
 $routes->get('/admin/mitra', 'AdminMitra::index', ['filter' => 'role:Admin']);
 $routes->delete('/admin/mitra/(:num)', 'AdminMitra::delete/$1', ['filter' => 'role:Admin']);
-
 $routes->get('/admin/customers', 'AdminCustomers::index', ['filter' => 'role:Admin']);
 
+// routes mitra
 $routes->get('/mitra', 'Mitra::index', ['filter' => 'role:Mitra']);
 $routes->get('/mitra/profile', 'Mitra::profile', ['filter' => 'role:Mitra']);
 
@@ -35,6 +36,9 @@ $routes->post('/mitra/gallery/add', 'MitraGallery::save', ['filter' => 'role:Mit
 $routes->get('/mitra/gallery/edit/(:num)', 'MitraGallery::edit/$1', ['filter' => 'role:Mitra']);
 $routes->post('/mitra/gallery/edit/(:num)', 'MitraGallery::update/$1', ['filter' => 'role:Mitra']);
 $routes->delete('/mitra/gallery/delete/(:num)', 'MitraGallery::delete/$1', ['filter' => 'role:Mitra']);
+
+// routes searching
+$routes->get('/photo', 'Search::index');
 
 // routes customers
 $routes->get('/customer', 'Customer::index', ['filter' => 'role:Customer']);

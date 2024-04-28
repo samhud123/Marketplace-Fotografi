@@ -6,6 +6,9 @@ class Customer extends BaseController
 {
     public function index(): string
     {
-        return view('customer/index');
+        $data = [
+            'title' => 'Customer | Profile'
+        ];
+        return view('customer/index', $data);
     }
 }
