@@ -8,16 +8,21 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 $routes->get('/order', 'Home::order', ['filter' => 'role:Customer']);
 $routes->post('/order', 'Home::attemptOrder', ['filter' => 'role:Customer']);
+$routes->get('/M/(:num)', 'Home::mitra/$1');
 
 // routes searching
 $routes->get('/photo', 'Search::index');
+$routes->get('/photo/detail/(:num)', 'Search::detail/$1');
 
 // routes admin
 $routes->get('/admin', 'Admin::index', ['filter' => 'role:Admin']);
 $routes->get('/admin/profile', 'Admin::profile', ['filter' => 'role:Admin']);
 $routes->get('/admin/mitra', 'AdminMitra::index', ['filter' => 'role:Admin']);
 $routes->delete('/admin/mitra/(:num)', 'AdminMitra::delete/$1', ['filter' => 'role:Admin']);
+
 $routes->get('/admin/customers', 'AdminCustomers::index', ['filter' => 'role:Admin']);
+
+$routes->get('/admin/transaction', 'AdminTrans::index');
 
 // routes mitra
 $routes->get('/mitra', 'Mitra::index', ['filter' => 'role:Mitra']);
@@ -48,4 +53,8 @@ $routes->delete('/mitra/gallery/delete/(:num)', 'MitraGallery::delete/$1', ['fil
 // routes customers
 $routes->get('/customer', 'Customer::index', ['filter' => 'role:Customer']);
 $routes->get('/customer/order', 'Customer::order', ['filter' => 'role:Customer']);
+$routes->get('/customer/order/detail/(:num)', 'Customer::orderDetail/$1', ['filter' => 'role:Customer']);
+$routes->get('/customer/history', 'Customer::history', ['filter' => 'role:Customer']);
+$routes->get('/customer/history/detail/(:num)', 'Customer::historyDetail/$1', ['filter' => 'role:Customer']);
+$routes->get('/customer/order/cancel/(:num)', 'Customer::cancel/$1', ['filter' => 'role:Customer']);
 $routes->get('/customer/order/finish/(:num)', 'Customer::finish/$1', ['filter' => 'role:Customer']);

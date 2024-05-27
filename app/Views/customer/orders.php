@@ -30,27 +30,27 @@
         <tbody>
             <?php $i = 1; ?>
             <?php foreach ($orders as $order) : ?>
-                <tr>
-                    <th scope="row"><?= $i++; ?></th>
-                    <td><?= $order['name_service']; ?></td>
-                    <td>Rp <?= $order['price']; ?></td>
-                    <?php if ($order['status_order'] === 'process') : ?>
-                        <?php $bg = 'text-bg-warning'; ?>
-                    <?php elseif ($order['status_order'] === 'approved') : ?>
-                        <?php $bg = 'text-bg-primary'; ?>
-                    <?php elseif ($order['status_order'] === 'finished') : ?>
-                        <?php $bg = 'text-bg-success'; ?>
-                    <?php else : ?>
-                        <?php $bg = 'text-bg-danger'; ?>
-                    <?php endif; ?>
-                    <td><span class="badge <?= $bg; ?>"><?= $order['status_order']; ?></span></td>
-                    <td>
-                        <a href="" class="btn btn-sm btn-info">Detail</a>
-                        <?php if ($order['status_order'] === 'approved') : ?>
-                            <a href="/customer/order/finish/<?= $order['order_id']; ?>" class="btn btn-sm btn-success">Finished</a>
+                <?php if ($order['status_order'] === 'process' || $order['status_order'] === 'approved') : ?>
+                    <tr>
+                        <th scope="row"><?= $i++; ?></th>
+                        <td><?= $order['name_service']; ?></td>
+                        <td>Rp <?= $order['price']; ?></td>
+                        <?php if ($order['status_order'] === 'process') : ?>
+                            <?php $bg = 'text-bg-warning'; ?>
+                        <?php elseif ($order['status_order'] === 'approved') : ?>
+                            <?php $bg = 'text-bg-primary'; ?>
                         <?php endif; ?>
-                    </td>
-                </tr>
+                        <td><span class="badge <?= $bg; ?>"><?= $order['status_order']; ?></span></td>
+                        <td>
+                            <a href="/customer/order/detail/<?= $order['order_id']; ?>" class="btn btn-sm btn-info">Detail</a>
+                            <?php if ($order['status_order'] === 'process') : ?>
+                                <a href="/customer/order/cancel/<?= $order['order_id']; ?>" class="btn btn-sm btn-danger">Cancel</a>
+                            <?php elseif ($order['status_order'] === 'approved') : ?>
+                                <a href="/customer/order/finish/<?= $order['order_id']; ?>" class="btn btn-sm btn-success">Finished</a>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endif; ?>
             <?php endforeach; ?>
         </tbody>
     </table>

@@ -2,17 +2,21 @@
 
 namespace App\Controllers;
 
+use App\Models\GalleryModel;
 use App\Models\OrderModel;
 use App\Models\ServiceModel;
+use Myth\Auth\Models\UserModel;
 
 class Home extends BaseController
 {
-    protected $serviceModel, $orderModal;
+    protected $serviceModel, $orderModal, $userModel, $galleryModel;
 
     public function __construct()
     {
         $this->serviceModel = new ServiceModel();
         $this->orderModal = new OrderModel();
+        $this->userModel = new UserModel();
+        $this->galleryModel = new GalleryModel();
     }
 
     public function index(): string
@@ -46,5 +50,16 @@ class Home extends BaseController
         //flash message
         session()->setFlashdata('message', 'Order successful, waiting for mitra confirmation...');
         return redirect()->to('/customer/order');
+    }
+
+    public function mitra($id)
+    {
+        $mitra = $this->userModel->where('id', $id)->first();
+        $data = [
+            'mitra' => $mitra, 
+            'galleries' =>$this->galleryModel->where('user_id', $id)->findAll()
+        ];
+
+        return view('mitra', $data);
     }
 }

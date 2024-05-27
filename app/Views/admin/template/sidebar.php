@@ -25,8 +25,8 @@
                 <i class="align-middle" data-feather="users"></i> <span class="align-middle">Manage Customer</span>
             </a>
         </li>
-        <li class="sidebar-item <?= $title == "Mitra | Orders" ? 'active' : ''; ?>">
-            <a class="sidebar-link" href="/mitra/orders">
+        <li class="sidebar-item <?= $title == "Admin | Transaction" ? 'active' : ''; ?>">
+            <a class="sidebar-link" href="/admin/transaction">
                 <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Transaction</span>
             </a>
         </li>

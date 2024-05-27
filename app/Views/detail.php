@@ -96,8 +96,8 @@
         }
     </style>
 
-<!-- Custom styles for this template -->
-<link href="/o/checkout.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/o/checkout.css" rel="stylesheet">
 </head>
 
 <body>
@@ -135,58 +135,43 @@
     </header>
 
     <main>
-
-        <section class="py-5 text-center container">
-            <div class="row py-lg-5">
-                <div class="col-lg-6 col-md-8 mx-auto">
-                    <form action="/photo" method="get">
-                        <div class="input-group mb-3">
-                            <input type="search" class="form-control form-control-lg border-info text-info" placeholder="Search..." name="search" aria-describedby="button-addon2">
-                            <button class="btn btn-info text-white fw-bold" type="submit" id="button-addon2">Search</button>
-                        </div>
-                    </form>
-                    <p class="lead text-body-secondary">Find the best professional photographer according to your wishes for the best quality photos.</p>
-                    <!-- <p>
-                        <a href="#" class="btn btn-primary my-2">Main call to action</a>
-                        <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-                    </p> -->
-                </div>
+        <div class="px-4 pt-5 my-5 text-center">
+            <img class="d-block mx-auto mb-4" src="/img/mitra/<?= $service[0]['photo']; ?>" alt="" height="200">
+            <span class="badge text-bg-primary mb-2">Rp <?= $service[0]['price']; ?></span>
+            <h3 class="display-6 fw-bold text-body-emphasis"><?= $service[0]['name_service']; ?></h3>
+            <p class="lead mb-4"><?= $service[0]['description']; ?></p>
+            <div class="mb-4">
+                <a href="/M/<?= $service[0]['id']; ?>" class="text-decoration-none">
+                    <img src="/template/img/avatars/avatar.jpg" class="rounded-circle d-inline me-2" alt="" width="40">
+                    <p class="d-inline fs-6"><?= $service[0]['nama']; ?></p>
+                </a>
             </div>
-        </section>
+            <a href="/order?service=<?= $service[0]['service_id']; ?>" class="btn btn-primary w-50">Order</a>
+        </div>
 
-        <div class="album py-4 bg-body-tertiary">
-            <div class="container">
+        <hr>
 
-                <?php if (count($services) === 0) : ?>
+        <!-- Page Content -->
+        <div class="container">
+            <div class="d-flex justify-content-center">
+                <h1 class="fw-light text-lg-start mt-4 mb-5">Gallery Mitra</h1>
+            </div>
+            <div class="row text-center text-lg-start">
+                <?php if (count($galleries) === 0) : ?>
                     <div class="text-center">
-                        <h6>No Result</h6>
+                        <h6>No Photo</h6>
                     </div>
                 <?php else : ?>
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                        <?php foreach ($services as $service) : ?>
-                            <div class="col">
-                                <div class="card shadow-sm">
-                                    <img src="/img/mitra/<?= $service['photo']; ?>" class="bd-placeholder-img card-img-top" width="100%" height="225">
-                                    <div class="card-body">
-                                        <span class="badge text-bg-primary mb-2">Rp <?= $service['price']; ?></span>
-                                        <h4><?= $service['name_service']; ?></h4>
-                                        <p class="card-text"><?= $service['description']; ?></p>
-
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <a href="/order?service=<?= $service['service_id']; ?>" class="btn btn-sm btn-outline-primary">Order</a>
-                                                <a href="/photo/detail/<?= $service['service_id']; ?>" class="btn btn-sm btn-outline-success">View</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
+                    <?php foreach ($galleries as $g) : ?>
+                        <div class="col-lg-3 col-md-4 col-6">
+                            <a href="#" class="d-block mb-4 h-100">
+                                <img class="img-fluid img-thumbnail" src="/img/gallery/<?= $g['photo']; ?>" alt="">
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
                 <?php endif; ?>
             </div>
         </div>
-
     </main>
 
     <footer class="text-body-secondary py-5">

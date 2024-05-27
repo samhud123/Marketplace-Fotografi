@@ -44,7 +44,7 @@ class CreateOrdersTable extends Migration
             ],
             'status_order' => [
                 'type' => 'ENUM',
-                'constraint' => "'process','approved','finished', 'rejected'",
+                'constraint' => "'process','approved','finished', 'rejected', 'cancelled'",
                 'default' => 'process'
             ],
             'created_at'    => ['type' => 'datetime', 'null' => true],

@@ -14,7 +14,7 @@
         <nav class="list-group list-group-flush">
             <a class="list-group-item <?= $title == "Customer | Profile" ? 'active' : ''; ?>" href="/customer"><i class="fe-icon-map-pin text-muted"></i>Profile</a>
             <a class="list-group-item <?= $title == "Customer | Order" ? 'active' : ''; ?>" href="/customer/order"><i class="fe-icon-map-pin text-muted"></i>Orders</a>
-            <a class="list-group-item " href="/customer"><i class="fe-icon-map-pin text-muted"></i>History</a>
+            <a class="list-group-item <?= $title == "Customer | History" ? 'active' : ''; ?>" href="/customer/history"><i class="fe-icon-map-pin text-muted"></i>History</a>
             <a class="list-group-item " href="/logout"><i class="fe-icon-map-pin text-muted"></i>Logout</a>
         </nav>
     </div>

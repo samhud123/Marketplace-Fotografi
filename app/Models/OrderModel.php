@@ -48,4 +48,31 @@ class OrderModel extends Model
             ->where('order_id', $orderId)
             ->get()->getResultArray();
     }
+
+    public function getOrderBuyerById($orderId, $buyerId)
+    {
+        return $this->db->table('tbl_orders')
+            ->join('tbl_services', 'tbl_services.service_id = tbl_orders.service_id')
+            ->join('users', 'tbl_orders.mitra_id = users.id')
+            ->where('order_id', $orderId)
+            ->where('buyer_id', $buyerId)
+            ->get()->getResultArray();
+    }
+
+    public function adminTransMitra()
+    {
+        return $this->db->table('tbl_orders')
+            ->select('id, email, username, nama, no_tlp, alamat')
+            ->join('tbl_services', 'tbl_services.service_id = tbl_orders.service_id')
+            ->join('users', 'tbl_orders.mitra_id = users.id')
+            ->get()->getResultArray();
+    }
+
+    public function adminTransBuyer()
+    {
+        return $this->db->table('tbl_orders')
+            ->join('tbl_services', 'tbl_services.service_id = tbl_orders.service_id')
+            ->join('users', 'tbl_orders.buyer_id = users.id')
+            ->get()->getResultArray();
+    }
 }

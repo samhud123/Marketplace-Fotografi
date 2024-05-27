@@ -19,6 +19,14 @@ class ServiceModel extends Model
             ->get()->getResultArray();
     }
 
+    public function getServiceById($serviceId)
+    {
+        return $this->db->table('tbl_services')
+            ->join('users', 'tbl_services.user_id = users.id')
+            ->where('service_id', $serviceId)
+            ->get()->getResultArray();
+    }
+
     // searching
     public function search($keyword)
     {

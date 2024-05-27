@@ -38,14 +38,19 @@
                                     <?php $bg = 'bg-primary'; ?>
                                 <?php elseif ($order['status_order'] === 'finished') : ?>
                                     <?php $bg = 'bg-success'; ?>
-                                <?php else : ?>
+                                <?php elseif($order['status_order'] === 'rejected' || $order['status_order'] === 'cancelled') : ?>
                                     <?php $bg = 'bg-danger'; ?>
                                 <?php endif; ?>
                                 <td><span class="badge <?= $bg; ?>"><?= $order['status_order']; ?></span></td>
                                 <td>
                                     <a href="/mitra/orders/detail/<?= $order['order_id']; ?>" class="btn btn-info">Detail</a>
-                                    <a href="/mitra/orders/confirm/<?= $order['order_id']; ?>" class="btn btn-primary">Confirm</a>
-                                    <a href="/mitra/orders/reject/<?= $order['order_id']; ?>" class="btn btn-danger">Reject</a>
+                                    <?php if ($order['status_order'] === 'finished' || $order['status_order'] === 'cancelled') : ?>
+                                        <?php $disabled = 'disabled' ?>
+                                    <?php else : ?>
+                                        <?php $disabled = '' ?>
+                                    <?php endif; ?>
+                                    <a href="/mitra/orders/confirm/<?= $order['order_id']; ?>" class="btn btn-primary <?= $disabled; ?>">Confirm</a>
+                                    <a href="/mitra/orders/reject/<?= $order['order_id']; ?>" class="btn btn-danger <?= $disabled; ?>">Reject</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

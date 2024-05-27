@@ -27,7 +27,7 @@ class MitraOrders extends BaseController
         $data = [
             'title' => 'Mitra | Orders',
             'order' => $this->orderModel->getOrderById($orderId)
-        ]; 
+        ];
         return view('mitra/orders/detail', $data);
     }
 
@@ -39,7 +39,7 @@ class MitraOrders extends BaseController
 
         return redirect()->to('/mitra/orders');
     }
-    
+
     public function reject($orderId)
     {
         $this->orderModel->update($orderId, [
