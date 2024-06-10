@@ -24,20 +24,21 @@ class AdminMitra extends BaseController
         return view('admin/mitra/index', $data);
     }
 
-    public function delete($userId)
+    public function disabled($id)
     {
-        $user = $this->userModel->find($userId);
+        $this->userModel->update($id, [
+            'active' => 0
+        ]);
 
-        if (!$user) {
-            session()->setFlashdata('errors', 'No data user');
-            return redirect()->to('/admin/mitra');
-        }
+        return redirect()->to('/admin/mitra');
+    }
 
-        // Lakukan soft delete dengan mengatur deleted_at
-        $user->deleted_at = date('Y-m-d H:i:s');
-        // $user->save();
+    public function enabled($id)
+    {
+        $this->userModel->update($id, [
+            'active' => 1
+        ]);
 
-        session()->setFlashdata('message', 'Successfully disabled user');
         return redirect()->to('/admin/mitra');
     }
 }

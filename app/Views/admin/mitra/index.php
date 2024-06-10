@@ -38,14 +38,10 @@
                                 <?php endif; ?>
                                 <td>
                                     <a href="/mitra/service/edit/" class="btn btn-sm btn-primary"><i class="align-middle" data-feather="edit"></i> <span class="align-middle">Detil</span></a>
-                                    <?php if ($mitra['active'] === '1') : ?>
-                                        <form action="/admin/mitra/<?= $mitra['id']; ?>" method="post" class="d-inline">
-                                            <?= csrf_field(); ?>
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i class="align-middle" data-feather="trash-2"></i> <span class="align-middle">Disabled</span></button>
-                                        </form>
-                                    <?php else : ?>
-                                        <button type="submit" class="btn btn-sm btn-success" onclick="return confirm('Are you sure?')"><i class="align-middle" data-feather="trash-2"></i> <span class="align-middle">Enabled</span></button>
+                                    <?php if ($mitra['active'] == 1) : ?>
+                                        <a href="/admin/mitra/disabled/<?= $mitra['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i class="align-middle" data-feather="trash-2"></i> <span class="align-middle">Disabled</span></a>
+                                    <?php elseif ($mitra['active'] == 0) : ?>
+                                        <a href="/admin/mitra/enabled/<?= $mitra['id']; ?>" class="btn btn-sm btn-success" onclick="return confirm('Are you sure?')"><i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Enabled</span></a>
                                     <?php endif; ?>
                                 </td>
                             </tr>

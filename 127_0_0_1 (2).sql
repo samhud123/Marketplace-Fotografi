@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2024 at 04:16 AM
+-- Generation Time: Jun 05, 2024 at 03:16 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -168,7 +168,14 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `email`, `user_id`, `date`, `succ
 (56, '::1', 'pembeli1@gmail.com', 4, '2024-05-24 01:16:15', 1),
 (57, '::1', 'admin@admin.com', 3, '2024-05-24 01:18:13', 1),
 (58, '::1', 'pembeli1@gmail.com', NULL, '2024-05-24 01:20:39', 0),
-(59, '::1', 'pembeli1@gmail.com', 4, '2024-05-24 01:20:47', 1);
+(59, '::1', 'pembeli1@gmail.com', 4, '2024-05-24 01:20:47', 1),
+(60, '::1', 'mitra1@gmail.com', 2, '2024-06-03 23:28:31', 1),
+(61, '::1', 'pembeli1@gmail.com', 4, '2024-06-03 23:29:51', 1),
+(62, '::1', 'mitra1@gmail.com', 2, '2024-06-04 13:40:46', 1),
+(63, '::1', 'mitra2@gmail.com', 5, '2024-06-04 14:58:47', 1),
+(64, '::1', 'mitra1@gmail.com', NULL, '2024-06-04 14:59:36', 0),
+(65, '::1', 'mitra1@gmail.com', 2, '2024-06-04 14:59:44', 1),
+(66, '::1', 'admin@admin.com', 3, '2024-06-04 15:00:39', 1);
 
 -- --------------------------------------------------------
 
@@ -481,7 +488,7 @@ ALTER TABLE `auth_groups`
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions`

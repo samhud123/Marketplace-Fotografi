@@ -14,7 +14,7 @@ class AdminCustomers extends BaseController
         $this->userModel = new UserModel();
         $this->groupModel = new GroupModel();
     }
-    
+
     public function index(): string
     {
         $data = [
@@ -22,5 +22,23 @@ class AdminCustomers extends BaseController
             'customers' => $this->groupModel->getUsersForGroup(3)
         ];
         return view('admin/customer/index', $data);
+    }
+
+    public function disabled($id)
+    {
+        $this->userModel->update($id, [
+            'active' => 0
+        ]);
+
+        return redirect()->to('/admin/customers');
+    }
+
+    public function enabled($id)
+    {
+        $this->userModel->update($id, [
+            'active' => 1
+        ]);
+
+        return redirect()->to('/admin/customers');
     }
 }

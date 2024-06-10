@@ -30,14 +30,15 @@
                         <div class="text-center mt-4">
                             <h1 class="h2 mb-4"><?= lang('Auth.register') ?></h1>
                         </div>
-                        
+
                         <?= view('Myth\Auth\Views\_message_block') ?>
-                        
+
                         <div class="card">
                             <div class="card-body">
                                 <div class="m-sm-4">
                                     <form action="<?= url_to('register') ?>" method="post">
                                         <?= csrf_field() ?>
+                                        <input type="hidden" name="foto" value="default.png">
                                         <div class="mb-3">
                                             <label class="form-label">Username</label>
                                             <input class="form-control form-control-lg <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" type="text" name="username" placeholder="<?= lang('Auth.username') ?>" value="<?= old('username') ?>" />

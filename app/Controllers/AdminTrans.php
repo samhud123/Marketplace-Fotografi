@@ -17,8 +17,7 @@ class AdminTrans extends BaseController
     {
         $data = [
             'title' => 'Admin | Transaction',
-            'mitras' => $this->orderModel->adminTransMitra(),
-            'buyers' => $this->orderModel->adminTransBuyer()
+            'orders' => $this->orderModel->getAllOrders()
         ];
 
         return view('admin/transaction/index', $data);

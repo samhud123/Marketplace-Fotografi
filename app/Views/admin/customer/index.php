@@ -38,7 +38,11 @@
                                 <?php endif; ?>
                                 <td>
                                     <a href="/mitra/service/edit/" class="btn btn-sm btn-primary"><i class="align-middle" data-feather="edit"></i> <span class="align-middle">Detil</span></a>
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i class="align-middle" data-feather="trash-2"></i> <span class="align-middle">Disabled</span></button>
+                                    <?php if ($customer['active'] == 1) : ?>
+                                        <a href="/admin/customers/disabled/<?= $customer['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i class="align-middle" data-feather="trash-2"></i> <span class="align-middle">Disabled</span></a>
+                                    <?php elseif ($customer['active'] == 0) : ?>
+                                        <a href="/admin/customers/enabled/<?= $customer['id']; ?>" class="btn btn-sm btn-success" onclick="return confirm('Are you sure?')"><i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">Enabled</span></a>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

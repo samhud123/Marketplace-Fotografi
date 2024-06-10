@@ -27,6 +27,7 @@ class OrderModel extends Model
         return $this->db->table('tbl_orders')
             ->join('tbl_services', 'tbl_services.service_id = tbl_orders.service_id')
             ->where('buyer_id', $userId)
+            ->orderBy('order_id', 'DESC')
             ->get()->getResultArray();
     }
 
@@ -37,6 +38,7 @@ class OrderModel extends Model
             ->join('tbl_services', 'tbl_services.service_id = tbl_orders.service_id')
             ->join('users', 'tbl_orders.buyer_id = users.id')
             ->where('mitra_id', $mitraId)
+            ->orderBy('order_id', 'DESC')
             ->get()->getResultArray();
     }
 
@@ -59,20 +61,16 @@ class OrderModel extends Model
             ->get()->getResultArray();
     }
 
-    public function adminTransMitra()
+    // reports admin
+    public function getAllOrders()
     {
-        return $this->db->table('tbl_orders')
-            ->select('id, email, username, nama, no_tlp, alamat')
+        return $this->table('tbl_orders')
+            ->select('tbl_orders.order_id, buyer.username as buyer, buyer.email as emailBuyer, mitra.email as emailMitra, mitra.username as mitra, tbl_services.name_service, tbl_services.price, tbl_orders.status_order, tbl_orders.created_at')
             ->join('tbl_services', 'tbl_services.service_id = tbl_orders.service_id')
-            ->join('users', 'tbl_orders.mitra_id = users.id')
-            ->get()->getResultArray();
-    }
-
-    public function adminTransBuyer()
-    {
-        return $this->db->table('tbl_orders')
-            ->join('tbl_services', 'tbl_services.service_id = tbl_orders.service_id')
-            ->join('users', 'tbl_orders.buyer_id = users.id')
-            ->get()->getResultArray();
+            ->join('users as buyer', 'tbl_orders.buyer_id = buyer.id')
+            ->join('users as mitra', 'tbl_orders.mitra_id = mitra.id')
+            ->orderBy('tbl_orders.order_id', 'DESC')
+            ->get()
+            ->getResultArray();
     }
 }

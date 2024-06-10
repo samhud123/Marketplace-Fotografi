@@ -11,7 +11,7 @@
                 </a>
 
                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                    <img src="<?= base_url(); ?>/template/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark"><?= user()->username; ?></span>
+                    <img src="<?= base_url(); ?>/img/mitra/profile/<?= user()->foto; ?>" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark"><?= user()->username; ?></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
                     <a class="dropdown-item" href="/mitra/profile"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
