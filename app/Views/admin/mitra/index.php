@@ -37,7 +37,7 @@
                                     <td><span class="text-danger fw-bold">In-Active</span></td>
                                 <?php endif; ?>
                                 <td>
-                                    <a href="/mitra/service/edit/" class="btn btn-sm btn-primary"><i class="align-middle" data-feather="edit"></i> <span class="align-middle">Detil</span></a>
+                                    <a href="/admin/mitra/detail/<?= $mitra['id']; ?>" class="btn btn-sm btn-primary"><i class="align-middle" data-feather="edit"></i> <span class="align-middle">Detil</span></a>
                                     <?php if ($mitra['active'] == 1) : ?>
                                         <a href="/admin/mitra/disabled/<?= $mitra['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i class="align-middle" data-feather="trash-2"></i> <span class="align-middle">Disabled</span></a>
                                     <?php elseif ($mitra['active'] == 0) : ?>

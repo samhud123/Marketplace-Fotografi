@@ -21,10 +21,12 @@ $routes->get('/admin/profile/edit', 'Admin::editProfile', ['filter' => 'role:Adm
 $routes->post('/admin/profile/edit', 'Admin::saveProfile', ['filter' => 'role:Admin']);
 
 $routes->get('/admin/mitra', 'AdminMitra::index', ['filter' => 'role:Admin']);
+$routes->get('/admin/mitra/detail/(:num)', 'AdminMitra::detail/$1', ['filter' => 'role:Admin']);
 $routes->get('/admin/mitra/disabled/(:num)', 'AdminMitra::disabled/$1', ['filter' => 'role:Admin']);
 $routes->get('/admin/mitra/enabled/(:num)', 'AdminMitra::enabled/$1', ['filter' => 'role:Admin']);
 
 $routes->get('/admin/customers', 'AdminCustomers::index', ['filter' => 'role:Admin']);
+$routes->get('/admin/customers/detail/(:num)', 'AdminCustomers::detail/$1', ['filter' => 'role:Admin']);
 $routes->get('/admin/customers/disabled/(:num)', 'AdminCustomers::disabled/$1', ['filter' => 'role:Admin']);
 $routes->get('/admin/customers/enabled/(:num)', 'AdminCustomers::enabled/$1', ['filter' => 'role:Admin']);
 

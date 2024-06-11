@@ -30,11 +30,11 @@
                 <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">Transaction</span>
             </a>
         </li>
-        <li class="sidebar-item <?= $title == "Mitra | Gallery" ? 'active' : ''; ?>">
+        <!-- <li class="sidebar-item">
             <a class="sidebar-link" href="/mitra/gallery">
                 <i class="align-middle" data-feather="message-square"></i> <span class="align-middle">Chat</span>
             </a>
-        </li>
+        </li> -->
 
         <li class="sidebar-header">
             ACCOUNT

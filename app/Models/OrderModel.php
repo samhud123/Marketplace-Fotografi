@@ -73,4 +73,15 @@ class OrderModel extends Model
             ->get()
             ->getResultArray();
     }
+
+    public function getOrdersByBuyer($buyerId)
+    {
+        return $this->db->table('tbl_orders')
+            ->select('tbl_orders.order_id, tbl_services.name_service, tbl_services.price, users.username, users.email, tbl_orders.created_at, tbl_orders.status_order')
+            ->join('tbl_services', 'tbl_services.service_id = tbl_orders.service_id')
+            ->join('users', 'tbl_orders.mitra_id = users.id')
+            ->where('buyer_id', $buyerId)
+            ->orderBy('order_id', 'DESC')
+            ->get()->getResultArray();
+    }
 }

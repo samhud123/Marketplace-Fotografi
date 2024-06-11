@@ -2,14 +2,22 @@
 
 namespace App\Controllers;
 
+use App\Models\OrderModel;
+use Myth\Auth\Models\GroupModel;
 use Myth\Auth\Models\UserModel;
 
 class Admin extends BaseController
 {
     public function index(): string
     {
+        $users = new GroupModel();
+        $orders = new OrderModel();
+
         $data = [
-            'title' => 'Admin | Dashboard'
+            'title' => 'Admin | Dashboard',
+            'total_mitra' => $users->getUsersForGroup(2),
+            'total_buyers' => $users->getUsersForGroup(3),
+            'total_orders' => $orders->countAllResults()
         ];
         return view('admin/index', $data);
     }
