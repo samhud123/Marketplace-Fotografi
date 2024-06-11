@@ -29,13 +29,13 @@
                                 <td><?= $order['buyer']; ?></td>
                                 <td><?= $order['mitra']; ?></td>
                                 <td><?= $order['name_service']; ?></td>
-                                <?php 
-                                
-                                if($order['status_order'] === 'process'){
+                                <?php
+
+                                if ($order['status_order'] === 'process') {
                                     $td = 'text-warning';
-                                } elseif($order['status_order'] === 'approved'){
+                                } elseif ($order['status_order'] === 'approved') {
                                     $td = 'text-primary';
-                                } elseif($order['status_order'] === 'finished'){
+                                } elseif ($order['status_order'] === 'finished') {
                                     $td = 'text-success';
                                 } else {
                                     $td = 'text-danger';
@@ -47,7 +47,7 @@
                                     <p class="mb-0 fw-normal"><?= $date->format('d F Y'); ?></p>
                                     <span><?= $date->format('H:i:s'); ?></span>
                                 </td>
-                                <td><a href="" class="btn btn-primary">Detail</a></td>
+                                <td><a href="/admin/transaction/detail/<?= $order['order_id']; ?>" class="btn btn-primary">Detail</a></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

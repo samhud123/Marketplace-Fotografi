@@ -22,4 +22,15 @@ class AdminTrans extends BaseController
 
         return view('admin/transaction/index', $data);
     }
+
+    public function detail($id_order)
+    {
+        $data = [
+            'title' => 'Admin | Transaction',
+            'order_detail' => $this->orderModel->getOrderDetailForAdmin($id_order)
+        ];
+
+        // dd($data['order_detail']);
+        return view('admin/transaction/detail', $data);
+    }
 }

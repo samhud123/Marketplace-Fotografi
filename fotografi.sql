@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2024 at 03:16 AM
+-- Generation Time: Jun 12, 2024 at 12:50 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -88,7 +88,9 @@ INSERT INTO `auth_groups_users` (`group_id`, `user_id`) VALUES
 (1, 3),
 (2, 2),
 (2, 5),
-(3, 4);
+(2, 7),
+(3, 4),
+(3, 6);
 
 -- --------------------------------------------------------
 
@@ -175,7 +177,29 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `email`, `user_id`, `date`, `succ
 (63, '::1', 'mitra2@gmail.com', 5, '2024-06-04 14:58:47', 1),
 (64, '::1', 'mitra1@gmail.com', NULL, '2024-06-04 14:59:36', 0),
 (65, '::1', 'mitra1@gmail.com', 2, '2024-06-04 14:59:44', 1),
-(66, '::1', 'admin@admin.com', 3, '2024-06-04 15:00:39', 1);
+(66, '::1', 'admin@admin.com', 3, '2024-06-04 15:00:39', 1),
+(67, '::1', 'mitra1@gmail.com', 2, '2024-06-05 23:27:15', 1),
+(68, '::1', 'pembeli1@gmail.com', 4, '2024-06-05 23:27:59', 1),
+(69, '::1', 'pembeli1@gmail.com', 4, '2024-06-06 23:39:10', 1),
+(70, '::1', 'pembeli2@gmail.com', 6, '2024-06-07 00:02:20', 1),
+(71, '::1', 'pembeli1@gmail.com', 4, '2024-06-07 00:03:54', 1),
+(72, '::1', 'pembeli2@gmail.com', 6, '2024-06-07 00:04:29', 1),
+(73, '::1', 'mitra1@gmail.com', 2, '2024-06-08 11:10:21', 1),
+(74, '::1', 'pembeli1@gmail.com', 4, '2024-06-08 11:52:02', 1),
+(75, '::1', 'mitra3@gmail.com', 7, '2024-06-08 13:00:51', 1),
+(76, '::1', 'admin@admin.com', 3, '2024-06-08 13:02:48', 1),
+(77, '::1', 'mitra1@gmail.com', 2, '2024-06-08 23:28:57', 1),
+(78, '::1', 'admin@admin.com', 3, '2024-06-08 23:30:43', 1),
+(79, '::1', 'admin@admin.com', 3, '2024-06-09 12:36:06', 1),
+(80, '::1', 'admin@admin.com', 3, '2024-06-10 09:54:37', 1),
+(81, '::1', 'mitra1@gmail.com', 2, '2024-06-10 10:14:18', 1),
+(82, '::1', 'admin@admin.com', NULL, '2024-06-11 03:24:21', 0),
+(83, '::1', 'admin@admin.com', 3, '2024-06-11 03:24:36', 1),
+(84, '::1', 'mitra1@gmail.com', 2, '2024-06-11 03:34:32', 1),
+(85, '::1', 'admin@admin.com', 3, '2024-06-11 13:25:59', 1),
+(86, '::1', 'mitra1@gmail.com', 2, '2024-06-11 13:36:19', 1),
+(87, '::1', 'admin@admin.com', 3, '2024-06-11 22:08:53', 1),
+(88, '::1', 'mitra1@gmail.com', 2, '2024-06-11 22:13:20', 1);
 
 -- --------------------------------------------------------
 
@@ -342,6 +366,7 @@ CREATE TABLE `users` (
   `nama` varchar(60) DEFAULT NULL,
   `no_tlp` varchar(14) DEFAULT NULL,
   `alamat` varchar(255) DEFAULT NULL,
+  `foto` varchar(100) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
   `reset_hash` varchar(255) DEFAULT NULL,
   `reset_at` datetime DEFAULT NULL,
@@ -360,11 +385,13 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `username`, `nama`, `no_tlp`, `alamat`, `password_hash`, `reset_hash`, `reset_at`, `reset_expires`, `activate_hash`, `status`, `status_message`, `active`, `force_pass_reset`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(2, 'mitra1@gmail.com', 'mitra1', 'Mitra Pertama', NULL, NULL, '$2y$10$GeyUP9K3E7yHxKhc18RIEOzMNB9zLi.iX6G.tuTBhmPjjR1WLTJ/C', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-04-05 23:29:33', '2024-04-05 23:29:33', NULL),
-(3, 'admin@admin.com', 'Admin', NULL, NULL, NULL, '$2y$10$1pMLqww61Ph1c1eJNKvVzujtznoIwZy2DyOXg0OZ5yY5pvQx8UWzK', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-04-07 03:28:18', '2024-04-07 03:28:18', NULL),
-(4, 'pembeli1@gmail.com', 'pembeli1', 'Pembeli Pertama', '645374659876', 'Pekalongan, Jawa Tengah', '$2y$10$Xl/SGss8HSjxOlVEp37I8OFQodPjBgOM.MwllqNzoTNFbIQ0MR8RS', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-04-08 02:40:23', '2024-04-08 02:40:23', NULL),
-(5, 'mitra2@gmail.com', 'mitra2', NULL, NULL, NULL, '$2y$10$JyVTYN1eXfMP758ZZwzW8u8KffTr4UCVq9W3JsiyUvJjI3fVK/aGS', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-04-28 01:56:06', '2024-04-28 01:56:06', NULL);
+INSERT INTO `users` (`id`, `email`, `username`, `nama`, `no_tlp`, `alamat`, `foto`, `password_hash`, `reset_hash`, `reset_at`, `reset_expires`, `activate_hash`, `status`, `status_message`, `active`, `force_pass_reset`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(2, 'mitra1@gmail.com', 'mitra1', 'Mitra Pertama', '0123456789', 'Pekalongan, Jawa Tengah', '1717851307_fbb5411d0f79aa6f1bcf.png', '$2y$10$GeyUP9K3E7yHxKhc18RIEOzMNB9zLi.iX6G.tuTBhmPjjR1WLTJ/C', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-04-05 23:29:33', '2024-06-11 03:35:54', NULL),
+(3, 'admin@admin.com', 'Admin', 'Admin Utama', NULL, NULL, 'default.png', '$2y$10$1pMLqww61Ph1c1eJNKvVzujtznoIwZy2DyOXg0OZ5yY5pvQx8UWzK', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-04-07 03:28:18', '2024-06-08 23:54:26', NULL),
+(4, 'pembeli1@gmail.com', 'pembeli1', 'Pembeli Pertama', '0123456789', 'Pekalongan, Jawa Tengah', '1717718647_484d16518131c65b5be9.png', '$2y$10$Xl/SGss8HSjxOlVEp37I8OFQodPjBgOM.MwllqNzoTNFbIQ0MR8RS', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-04-08 02:40:23', '2024-06-09 12:46:46', NULL),
+(5, 'mitra2@gmail.com', 'mitra2', NULL, NULL, NULL, 'default.png', '$2y$10$JyVTYN1eXfMP758ZZwzW8u8KffTr4UCVq9W3JsiyUvJjI3fVK/aGS', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-04-28 01:56:06', '2024-04-28 01:56:06', NULL),
+(6, 'pembeli2@gmail.com', 'pembeli2', NULL, NULL, NULL, 'default.png', '$2y$10$OKobp8sq6cLgt.UX5lFscu92NVZVY52Ju.j0zK.q8rIa..5/o/AaK', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2024-06-07 00:02:13', '2024-06-09 13:19:06', NULL),
+(7, 'mitra3@gmail.com', 'mitra3', NULL, NULL, NULL, 'default.png', '$2y$10$JedYJsfxAeopSPu2rcjTbeQf96cacUNJZGXCJoTB3SiMFKt9pZBx2', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2024-06-08 13:00:41', '2024-06-09 13:18:59', NULL);
 
 --
 -- Indexes for dumped tables
@@ -488,7 +515,7 @@ ALTER TABLE `auth_groups`
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions`
@@ -536,7 +563,7 @@ ALTER TABLE `tbl_services`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables

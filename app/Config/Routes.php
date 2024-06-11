@@ -30,7 +30,8 @@ $routes->get('/admin/customers/detail/(:num)', 'AdminCustomers::detail/$1', ['fi
 $routes->get('/admin/customers/disabled/(:num)', 'AdminCustomers::disabled/$1', ['filter' => 'role:Admin']);
 $routes->get('/admin/customers/enabled/(:num)', 'AdminCustomers::enabled/$1', ['filter' => 'role:Admin']);
 
-$routes->get('/admin/transaction', 'AdminTrans::index');
+$routes->get('/admin/transaction', 'AdminTrans::index', ['filter' => 'role:Admin']);
+$routes->get('/admin/transaction/detail/(:num)', 'AdminTrans::detail/$1', ['filter' => 'role:Admin']);
 
 // routes mitra
 $routes->get('/mitra', 'Mitra::index', ['filter' => 'role:Mitra']);

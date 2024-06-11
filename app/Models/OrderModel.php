@@ -84,4 +84,16 @@ class OrderModel extends Model
             ->orderBy('order_id', 'DESC')
             ->get()->getResultArray();
     }
+
+    public function getOrderDetailForAdmin($orderId)
+    {
+        return $this->table('tbl_orders')
+            ->select('tbl_orders.order_id, buyer.username as buyer, buyer.email as emailBuyer, buyer.nama as nameBuyer, buyer.alamat as alamatBuyer, buyer.no_tlp as tlpBuyer, mitra.email as emailMitra, mitra.username as mitra, mitra.foto as fotoMitra, tbl_services.name_service, tbl_services.price, tbl_services.description, tbl_services.photo, tbl_orders.status_order, tbl_orders.created_at, tbl_orders.date, tbl_orders.message')
+            ->join('tbl_services', 'tbl_services.service_id = tbl_orders.service_id')
+            ->join('users as buyer', 'tbl_orders.buyer_id = buyer.id')
+            ->join('users as mitra', 'tbl_orders.mitra_id = mitra.id')
+            ->where('order_id', $orderId)
+            ->get()
+            ->getRowObject();
+    }
 }
