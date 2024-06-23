@@ -2,6 +2,12 @@
 
 <?= $this->section('content') ?>
 <div class="col-lg-8 pb-5">
+    <?php if (session()->get('message')) : ?>
+        <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+            <?= session()->get('message'); ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
     <table class="table">
         <thead class="table-info">
             <tr>
@@ -28,6 +34,9 @@
                         <td><span class="badge <?= $bg; ?>"><?= $order['status_order']; ?></span></td>
                         <td>
                             <a href="/customer/history/detail/<?= $order['order_id']; ?>" class="btn btn-sm btn-info">Detail</a>
+                            <?php if ($order['status_order'] === 'finished') : ?>
+                                <a href="/customer/history/comment/<?= $order['order_id']; ?>" class="btn btn-sm btn-secondary">Review</a>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endif; ?>
@@ -35,4 +44,5 @@
         </tbody>
     </table>
 </div>
+
 <?= $this->endSection() ?>

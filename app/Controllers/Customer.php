@@ -2,7 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\CommentModel;
 use App\Models\OrderModel;
+use App\Models\ServiceModel;
 use Myth\Auth\Models\UserModel;
 
 class Customer extends BaseController
@@ -112,9 +114,12 @@ class Customer extends BaseController
 
     public function history()
     {
+        $comment = new CommentModel();
+
         $data = [
             'title' => 'Customer | History',
-            'orders' => $this->orderModel->getNewOrders(user_id())
+            'orders' => $this->orderModel->getNewOrders(user_id()),
+            // 'comments' => $comment->where('buyer_id', user_id())->findAll()
         ];
         return view('customer/history', $data);
     }
@@ -126,6 +131,33 @@ class Customer extends BaseController
             'order' => $this->orderModel->getOrderBuyerById($orderId, user_id())
         ];
         return view('customer/history_detail', $data);
+    }
+
+    public function comment($orderId)
+    {
+        $data = [
+            'title' => 'Customer | History',
+            'order' => $this->orderModel->getOrderBuyerById($orderId, user_id())
+        ];
+        return view('customer/comment', $data);
+    }
+
+    public function postComment($orderId)
+    {
+        $comment = new CommentModel();
+        $service_id = $this->orderModel->select('service_id')->where('order_id', $orderId)->first();
+
+        $comment->insert([
+            'buyer_id' => user_id(),
+            'order_id' => $orderId,
+            'service_id' => $service_id,
+            'rating' => $this->request->getPost('star'),
+            'comment' => $this->request->getPost('comment'),
+            'created_at' => date('Y-m-d H:i:s')
+        ]);
+
+        session()->setFlashdata('message', 'Comment sent');
+        return redirect()->to('/customer/history');
     }
 
     public function cancel($orderId)

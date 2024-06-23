@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2024 at 12:50 AM
+-- Generation Time: Jun 23, 2024 at 06:41 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `fotografi`
 --
-CREATE DATABASE IF NOT EXISTS `fotografi` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `fotografi`;
 
 -- --------------------------------------------------------
 
@@ -199,7 +197,14 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `email`, `user_id`, `date`, `succ
 (85, '::1', 'admin@admin.com', 3, '2024-06-11 13:25:59', 1),
 (86, '::1', 'mitra1@gmail.com', 2, '2024-06-11 13:36:19', 1),
 (87, '::1', 'admin@admin.com', 3, '2024-06-11 22:08:53', 1),
-(88, '::1', 'mitra1@gmail.com', 2, '2024-06-11 22:13:20', 1);
+(88, '::1', 'mitra1@gmail.com', 2, '2024-06-11 22:13:20', 1),
+(89, '::1', 'mitra1@gmail.com', 2, '2024-06-23 01:07:39', 1),
+(90, '::1', 'mitra1@gmail.com', 2, '2024-06-23 01:11:08', 1),
+(91, '::1', 'mitra1@gmail.com', 2, '2024-06-23 01:11:58', 1),
+(92, '::1', 'pembeli1@gmail.com', 4, '2024-06-23 01:18:36', 1),
+(93, '::1', 'pembeli1@gmail.com', 4, '2024-06-23 01:20:26', 1),
+(94, '::1', 'mitra2@gmail.com', 5, '2024-06-23 01:20:47', 1),
+(95, '::1', 'mitra1@gmail.com', 2, '2024-06-23 01:21:51', 1);
 
 -- --------------------------------------------------------
 
@@ -278,6 +283,28 @@ INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`
 (5, '2024-04-06-001130', 'App\\Database\\Migrations\\CreateServicesTable', 'default', 'App', 1712362991, 2),
 (6, '2024-04-06-230621', 'App\\Database\\Migrations\\CreateGalleryTable', 'default', 'App', 1712444981, 3),
 (7, '2024-04-28-042427', 'App\\Database\\Migrations\\CreateOrdersTable', 'default', 'App', 1714278770, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_comments`
+--
+
+CREATE TABLE `tbl_comments` (
+  `buyer_id` int(10) UNSIGNED NOT NULL,
+  `order_id` int(10) UNSIGNED NOT NULL,
+  `service_id` int(10) UNSIGNED NOT NULL,
+  `rating` int(1) NOT NULL,
+  `comment` text NOT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_comments`
+--
+
+INSERT INTO `tbl_comments` (`buyer_id`, `order_id`, `service_id`, `rating`, `comment`, `created_at`) VALUES
+(4, 6, 3, 5, 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. A odio cupiditate saepe totam delectus autem!', '2024-06-23 04:41:19');
 
 -- --------------------------------------------------------
 
@@ -465,6 +492,14 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_comments`
+--
+ALTER TABLE `tbl_comments`
+  ADD KEY `buyer_id` (`buyer_id`),
+  ADD KEY `order_id` (`order_id`),
+  ADD KEY `service_id` (`service_id`);
+
+--
 -- Indexes for table `tbl_gallery`
 --
 ALTER TABLE `tbl_gallery`
@@ -515,7 +550,7 @@ ALTER TABLE `auth_groups`
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions`
@@ -595,6 +630,14 @@ ALTER TABLE `auth_tokens`
 ALTER TABLE `auth_users_permissions`
   ADD CONSTRAINT `auth_users_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `auth_permissions` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `auth_users_permissions_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `tbl_comments`
+--
+ALTER TABLE `tbl_comments`
+  ADD CONSTRAINT `tbl_comments_ibfk_1` FOREIGN KEY (`buyer_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `tbl_comments_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `tbl_orders` (`order_id`),
+  ADD CONSTRAINT `tbl_comments_ibfk_3` FOREIGN KEY (`service_id`) REFERENCES `tbl_services` (`service_id`);
 
 --
 -- Constraints for table `tbl_gallery`

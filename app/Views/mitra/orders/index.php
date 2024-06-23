@@ -38,13 +38,13 @@
                                     <?php $bg = 'bg-primary'; ?>
                                 <?php elseif ($order['status_order'] === 'finished') : ?>
                                     <?php $bg = 'bg-success'; ?>
-                                <?php elseif($order['status_order'] === 'rejected' || $order['status_order'] === 'cancelled') : ?>
+                                <?php elseif ($order['status_order'] === 'rejected' || $order['status_order'] === 'cancelled') : ?>
                                     <?php $bg = 'bg-danger'; ?>
                                 <?php endif; ?>
                                 <td><span class="badge <?= $bg; ?>"><?= $order['status_order']; ?></span></td>
                                 <td>
                                     <a href="/mitra/orders/detail/<?= $order['order_id']; ?>" class="btn btn-info">Detail</a>
-                                    <?php if ($order['status_order'] === 'finished' || $order['status_order'] === 'cancelled') : ?>
+                                    <?php if ($order['status_order'] != 'process') : ?>
                                         <?php $disabled = 'disabled' ?>
                                     <?php else : ?>
                                         <?php $disabled = '' ?>

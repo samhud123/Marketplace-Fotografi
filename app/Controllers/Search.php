@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\CommentModel;
 use App\Models\GalleryModel;
 use App\Models\ServiceModel;
 
@@ -35,9 +36,13 @@ class Search extends BaseController
     {
         $service = $this->serviceModel->getServiceById($serviceId);
         $mitraId = $service[0]['id'];
+
+        $comment = new CommentModel();
+
         $data = [
             'service' => $service,
-            'galleries' => $this->galleryModel->where('user_id', $mitraId)->findAll()
+            'galleries' => $this->galleryModel->where('user_id', $mitraId)->findAll(),
+            'comments' => $comment->getCommentByService($service[0]['service_id'])
         ];
         return view('detail', $data);
     }
